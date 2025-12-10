@@ -6,6 +6,13 @@ provider "google" {
   region  = var.GOOGLE_REGION
 }
 
+module "gke_cluster" {
+  source         = "github.com/dimonquad/tf-google-gke-cluster"
+  GOOGLE_REGION  = var.GOOGLE_REGION
+  GOOGLE_PROJECT = var.GOOGLE_PROJECT
+  GKE_NUM_NODES  = 2
+}
+
 # Create the GKE (Google Kubernetes Engine) cluster
 resource "google_container_cluster" "this" {
   # Name of the cluster
